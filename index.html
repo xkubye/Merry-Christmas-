@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kejutan Natal Keluarga!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="music-control">
+        <button id="musicBtn" title="Matikan/Nyalakan Musik">
+            <i class="fa-solid fa-music"></i> </button>
+    </div>
+
+    <main id="gift-stage">
+        <h1 class="christmas-title">There's a Special Delivery!</h1>
+        <p class="instruction">Tap the gift a few times to open it!🎁</p>
+        
+        <div class="gift-container" id="interactiveGift">
+             <div class="gift-box"></div>
+            <div class="gift-ribbon"></div>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div id="tapProgress"></div>
+        </div>
+    </main>
+
+    <section id="card-reveal" class="hidden">
+        <div class="card-content">
+            <h2 class="merry-text">Merry Christmas!</h2>
+            <p class="family-name">our big family🎄</p>
+            
+            <p class="message-body">
+                "May the peace and joy of Christmas fill our hearts and homes. Though distance separates us, the love of family always unites us. God bless us all in the new year ahead!"
+            </p>
+
+            <div class="photo-gallery">
+                <img src="assets/bersama.jpg" alt="Foto Keluarga 1">
+                <img src="assets/duo.jpg" alt="Foto Keluarga 2">
+                <img src="assets/kian.jpg" alt="Foto Keluarga 3">
+                <img src="assets/caesar.jpg" alt="Foto Keluarga 4">
+            </div>
+
+            <div class="footer-emotes">
+                🎅🎁⭐❄️⛄💖
+            </div>
+        </div>
+    </section>
+
+    <audio id="bgMusic" loop>
+        <source src="assets/natal.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="tapSound">
+        <source src="assets/bom.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

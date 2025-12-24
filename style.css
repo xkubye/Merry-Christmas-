@@ -1,0 +1,256 @@
+/* IMPORT GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+/* VARIABEL WARNA NATAL */
+:root {
+    --christmas-red: #b3000c;
+    --christmas-green: #0f5132;
+    --gold: #ffd700;
+    --cream: #fff5e6;
+    --dark-bg: #1a0a0a;
+}
+
+/* RESET DASAR */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Background keren dengan gradien dan pola halus (online) */
+    background: linear-gradient(rgba(26, 10, 10, 0.85), rgba(179, 0, 12, 0.85)),
+                url('https://www.transparenttextures.com/patterns/snow.png'); 
+    background-color: var(--dark-bg);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* === MUSIK KONTROL === */
+.music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+#musicBtn {
+    background-color: var(--christmas-red);
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#musicBtn:hover {
+    transform: scale(1.1);
+    background-color: var(--christmas-green);
+}
+
+/* === BAGIAN PANGGUNG KADO === */
+#gift-stage {
+    text-align: center;
+    padding: 20px;
+    transition: opacity 0.8s ease-out;
+}
+
+.christmas-title {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 3rem;
+    color: var(--gold);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+}
+
+.instruction {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+/* KADO INTERAKTIF */
+.gift-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    cursor: pointer;
+    /* Bayangan di bawah kado */
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+    transition: transform 0.2s;
+}
+
+.gift-container:hover {
+    transform: scale(1.02);
+}
+
+/* Menggunakan CSS untuk membuat bentuk kotak kado dasar */
+.gift-box {
+    width: 100%;
+    height: 100%;
+    background-color: var(--christmas-red);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Tekstur halus online */
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+}
+
+/* Pita kado menggunakan CSS pseudo-elements */
+.gift-ribbon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.gift-ribbon::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 100%;
+    background-color: var(--gold);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.gift-ribbon::after {
+    content: '';
+    position: absolute;
+    height: 40px;
+    width: 100%;
+    background-color: var(--gold);
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+}
+
+/* ANIMASI LOMPAT & GOYANG SAAT DI-TAP */
+@keyframes jumpShake {
+    0% { transform: scale(1, 1) translateY(0) rotate(0deg); }
+    10% { transform: scale(1.1, 0.9) translateY(0) rotate(-3deg); }
+    30% { transform: scale(0.9, 1.1) translateY(-50px) rotate(3deg); } /* Lompat tinggi */
+    50% { transform: scale(1.05, 0.95) translateY(0) rotate(-3deg); }
+    70% { transform: scale(0.95, 1.05) translateY(-10px) rotate(2deg); }
+    100% { transform: scale(1, 1) translateY(0) rotate(0deg); }
+}
+
+/* Class yang ditambahkan via JS saat klik */
+.animating {
+    animation: jumpShake 0.6s ease-in-out;
+}
+
+/* Progress bar sederhana */
+.progress-bar-container {
+    width: 200px;
+    height: 10px;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 5px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+#tapProgress {
+    height: 100%;
+    width: 0%; /* Mulai dari 0 */
+    background-color: var(--gold);
+    transition: width 0.3s ease;
+}
+
+
+/* === BAGIAN KARTU UCAPAN (REVEAL) === */
+#card-reveal {
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    /* Animasi muncul */
+    animation: floatUp 1.2s ease-out forwards;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes floatUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-content {
+    background: var(--cream);
+    color: var(--christmas-red);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    text-align: center;
+    /* Border ala Natal */
+    border: 4px solid var(--christmas-green);
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* Tekstur online */
+}
+
+.merry-text {
+    font-family: 'Mountains of Christmas', cursive;
+    font-size: 2.8rem;
+    margin-bottom: 5px;
+}
+
+.family-name {
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: var(--christmas-green);
+}
+
+.message-body {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.photo-gallery img {
+    width: 100%;
+    height: 120px; /* Tinggi seragam */
+    object-fit: cover;
+    border-radius: 8px;
+    border: 3px solid var(--gold);
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+    transform: rotate(-2deg); /* Sedikit miring biar estetik */
+    transition: transform 0.3s;
+}
+.photo-gallery img:nth-child(2) { transform: rotate(3deg); }
+.photo-gallery img:hover { transform: scale(1.1) rotate(0deg); z-index: 2;}
+
+.footer-emotes {
+    font-size: 1.5rem;
+    letter-spacing: 10px;
+}
+
+/* Responsif untuk HP */
+@media (max-width: 480px) {
+    .christmas-title { font-size: 2rem; }
+    .card-content { padding: 25px; }
+    .merry-text { font-size: 2rem; }
+}
